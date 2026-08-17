@@ -1,4 +1,4 @@
-# picoCTF 2022 — credstuff 🔐
+# picoCTF 2022 — credstuff 
 
 | | |
 |---|---|
@@ -7,7 +7,7 @@
 | **Author** | Will Hong / LT `syreal` Jones |
 | **CTF** | picoCTF 2022 |
 
-## 📝 Challenge Description
+##  Challenge Description
 
 We found a leak of a blackmarket website's login credentials. The goal is to find the password belonging to the user `cultiris` and decrypt it.
 
@@ -18,7 +18,7 @@ The challenge provides two files:
 
 > The first username corresponds to the first password, the second username to the second password, and so on.
 
-## 🧠 Approach
+##  Approach
 
 1. Find the position (index) of `cultiris` in `usernames.txt`.
 2. Use that same index to retrieve the corresponding password from `passwords.txt`.
@@ -26,7 +26,7 @@ The challenge provides two files:
 
 ROT13 is a simple substitution cipher that rotates each letter 13 positions in the alphabet. Since applying ROT13 twice returns the original text, the same function can be used for both encryption and decryption.
 
-## 💻 Solution
+##  Solution
 
 ```python
 import string
@@ -62,20 +62,14 @@ if __name__ == "__main__":
     print(decrypted)
 ```
 
-## 🔍 Explanation
+##  Explanation
 
 - The usernames and passwords are **positionally related** — if `cultiris` is found at index `i`, then `passwords.txt[i]` contains the corresponding encrypted password.
 - The password is encrypted with ROT13, so calling `rot13()` on it decrypts it.
 
-**Example:**
 
-| Stage | Value |
-|---|---|
-| Encrypted | `...` |
-| ROT13'd | `...` |
-| Decrypted | `...` |
 
-## 🎯 Key Takeaways
+##  Key Takeaways
 
 - Use matching indexes to associate usernames with passwords in parallel files.
 - Recognize ROT13 as a common, easily reversible substitution cipher.
